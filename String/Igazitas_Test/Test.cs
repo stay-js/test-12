@@ -31,14 +31,14 @@ namespace Igazitas_Test
             var result = new Igazitas("alma", 2, Alignment.Left);
             Assert.AreEqual("al", result.ToString());
         }
-        
+
         [Test]
         public void RightAlignLengthIsShorterThanStringLength()
         {
             var result = new Igazitas("alma", 2, Alignment.Right);
             Assert.AreEqual("ma", result.ToString());
         }
-        
+
         [Test]
         public void MiddleAlignLengthIsShorterThanStringLength()
         {

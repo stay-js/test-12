@@ -8,7 +8,7 @@ namespace Tordeles_Test
         public void SplitMethodReturnsCorrectArray()
         {
             string[] result = StringHelper.Split("alma körte barack", ' ');
-            string[] expected = { "alma", "körte", "barack" };
+            string[] expected = ["alma", "körte", "barack"];
 
             Assert.AreEqual(expected, result);
         }
@@ -16,16 +16,14 @@ namespace Tordeles_Test
         [Test]
         public void TrimMethodReturnsCorrectString()
         {
-            string result = StringHelper.Trim("\n\t \r alma\n");
-            
-            Assert.AreEqual("alma", result);
+            Assert.AreEqual("alma", StringHelper.Trim("\n\t \r alma\n"));
         }
 
         [Test]
         public void WordCountMethodReturnsCorrectCount()
         {
-            int result = StringHelper.WordCount("Reggel beugrottam a spar-ba.");
-            
+            int result = StringHelper.WordCount("Reggel beugrottam a Spar-ba.");
+
             Assert.AreEqual(4, result);
         }
     }

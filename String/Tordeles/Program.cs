@@ -2,7 +2,7 @@
 
 Console.WriteLine(string.Join(", ",
     StringHelper.Split("asd asfasdasd asdasd ewfasf", ' ')));
-    
+
 Console.WriteLine(StringHelper.Trim("\n\t     alma\n"));
 
 Console.WriteLine(StringHelper.WordCount("Elképesztően mennék már gymbe."));

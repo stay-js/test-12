@@ -4,42 +4,43 @@ namespace Tordeles_Lib
     {
         public static string[] Tordel(string input, int length)
         {
-            if (input.Length <= length) return new []{input};
+            if (input.Length <= length) return [input];
 
-            string[] splitted = StringHelper.Split(input, ' ');
+            string[] words = StringHelper.Split(input, ' ');
             string current = "";
 
-            List<string> toReturn = new ();
+            List<string> result = [];
 
-            foreach (string word in splitted)
+            foreach (string word in words)
             {
                 if (word.Length > length)
                 {
-                    toReturn.Add(current);
-                    toReturn.Add(word[..length]);
+                    result.Add(current);
+                    result.Add(word[..length]);
                     current = word[length..];
 
                     while (current.Length > length)
                     {
-                        toReturn.Add(current[..length]);
+                        result.Add(current[..length]);
                         current = current[length..];
                     }
+
                     continue;
                 }
-                
+
                 if (current.Length + word.Length > length)
                 {
-                    toReturn.Add(current);
+                    result.Add(current);
                     current = word;
                     continue;
                 }
 
                 current += current == "" ? word : $" {word}";
             }
-            
-            toReturn.Add(current);
 
-            return toReturn.ToArray();
+            result.Add(current);
+
+            return result.ToArray();
         }
     }
 }

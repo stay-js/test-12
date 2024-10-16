@@ -8,8 +8,8 @@ namespace Tordeles_Test
         public void TordelMethodReturnsCorrectArray()
         {
             string[] result = Tordeles.Tordel("Lorem, ipsum dolor sit amet consectetur adipisicing elit.", 25);
-            string[] expected = { "Lorem, ipsum dolor sit", "amet consectetur", "adipisicing elit." };
-        
+            string[] expected = ["Lorem, ipsum dolor sit", "amet consectetur", "adipisicing elit."];
+
             Assert.AreEqual(expected, result);
         }
 
@@ -17,15 +17,14 @@ namespace Tordeles_Test
         public void TordelMethodReturnsCorrectArrayWhenAWordIsLongerThanSpecifiedLength()
         {
             string[] result = Tordeles.Tordel("Lorem, ipsum dolor sit Loremipsumdolorsitametconsecteturadipisicingelit. amet consectetur adipisicing elit.", 25);
-            string[] expected =
-            {
+            string[] expected = [
                 "Lorem, ipsum dolor sit",
                 "Loremipsumdolorsitametcon",
                 "secteturadipisicingelit.",
                 "amet consectetur",
                 "adipisicing elit."
-            };
-            
+            ];
+
             Assert.AreEqual(expected, result);
         }
     }
