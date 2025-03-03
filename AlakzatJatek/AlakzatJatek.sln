@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlakzatJatek", "AlakzatJatek\AlakzatJatek.csproj", "{9F6A0F88-9198-4161-84C3-6FC70F9F28A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlakzatJatek_Lib", "AlakzatJatek_Lib\AlakzatJatek_Lib.csproj", "{A237628A-60D4-4AD0-96C8-A37EC2A43A9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlakzatJatek_Test", "AlakzatJatek_Test\AlakzatJatek_Test.csproj", "{EC98DA35-8AB0-465E-A530-280AE75B0E79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F6A0F88-9198-4161-84C3-6FC70F9F28A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F6A0F88-9198-4161-84C3-6FC70F9F28A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F6A0F88-9198-4161-84C3-6FC70F9F28A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F6A0F88-9198-4161-84C3-6FC70F9F28A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A237628A-60D4-4AD0-96C8-A37EC2A43A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A237628A-60D4-4AD0-96C8-A37EC2A43A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A237628A-60D4-4AD0-96C8-A37EC2A43A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A237628A-60D4-4AD0-96C8-A37EC2A43A9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC98DA35-8AB0-465E-A530-280AE75B0E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC98DA35-8AB0-465E-A530-280AE75B0E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC98DA35-8AB0-465E-A530-280AE75B0E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC98DA35-8AB0-465E-A530-280AE75B0E79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

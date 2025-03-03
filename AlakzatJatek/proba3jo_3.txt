@@ -1,0 +1,4 @@
+﻿3
+sárga-kör;piros-négyzet1;kék-háromszög1
+kék-négyzet2;sárga-háromszög1;piros-ellipszis
+piros-háromszög2;kék-kör;sárga-ellipszis
