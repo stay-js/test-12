@@ -1,21 +1,22 @@
-﻿using System.Diagnostics;
-using System.Windows;
-using AlakzatJatek_Lib;
+﻿using AlakzatJatek_Lib;
+using System.Diagnostics;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using Shape = System.Windows.Shapes.Shape;
+using Shape = AlakzatJatek_Lib.Shape;
+using WPFShape = System.Windows.Shapes.Shape;
 
 namespace AlakzatJatek
 {
     public partial class MainWindow : Window
     {
         private const int SHAPE_SIZE = 50;
-        
+
         private ShapesGrid _shapesGrid = new();
         private string _filePath = string.Empty;
-        
+
         public MainWindow() => InitializeComponent();
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
@@ -26,17 +27,15 @@ namespace AlakzatJatek
                 FileName = "proba6rossz.txt",
                 Filter = "Text fájlok (*.txt)|*.txt|Minden fájl (*.*)|*.*"
             };
-            
+
             if (fileDialog.ShowDialog() != true) return;
-            
+
             _filePath = fileDialog.FileName;
             DrawButton.IsEnabled = true;
         }
 
         private void DrawButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_filePath)) return;
-
             try
             {
                 _shapesGrid = new ShapesGrid(File.ReadAllText(_filePath));
@@ -48,21 +47,21 @@ namespace AlakzatJatek
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            
+
             DrawGrid();
         }
-        
+
         private void Shape_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is not Shape { Tag: (int row, int col) }) return;
+            if (sender is not FrameworkElement { Tag: (int row, int col) }) return;
 
             int matchCount = _shapesGrid.CountSameShapeOrColor(row, col);
-            
+
             MessageBox.Show(matchCount > 0
                     ? $"{matchCount} alakzat azonos színű vagy formájú."
-                    : "Nincs azonos alak és szín a sorban és az oszlopban.", 
+                    : "Nincs azonos alak és szín a sorban és az oszlopban.",
                 "Eredmény",
-                MessageBoxButton.OK, 
+                MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
 
@@ -75,7 +74,7 @@ namespace AlakzatJatek
                 for (int j = 0; j < _shapesGrid.Size; j++)
                 {
                     var item = CreateItem(i, j);
-                    
+
                     Grid.SetRow(item, i);
                     Grid.SetColumn(item, j);
                     ShapesGrid.Children.Add(item);
@@ -86,14 +85,14 @@ namespace AlakzatJatek
         private Border CreateItem(int i, int j)
         {
             var item = _shapesGrid.Shapes[i, j];
-            var shape = CreateShape(item);
-                    
-            shape.Fill = new SolidColorBrush(
-                Color.FromArgb(item.Color.A, item.Color.R, item.Color.G, item.Color.B));
-            
+            var shape = CreateShape(item.Type);
+
+            var color = Color.FromRgb(item.Color.R, item.Color.G, item.Color.B);
+            shape.Fill = new SolidColorBrush(color);
+
             shape.Tag = (i, j);
             shape.MouseLeftButtonDown += Shape_Click;
-  
+
             var viewbox = new Viewbox
             {
                 Width = SHAPE_SIZE,
@@ -101,7 +100,7 @@ namespace AlakzatJatek
                 Stretch = Stretch.Uniform,
                 Child = shape
             };
-  
+
             return new Border
             {
                 BorderBrush = Brushes.Black,
@@ -113,14 +112,14 @@ namespace AlakzatJatek
                 Child = viewbox
             };
         }
-        
-        private static Shape CreateShape(AlakzatJatek_Lib.Shape shape)
+
+        private static WPFShape CreateShape(Shape.ShapeType type)
         {
-            return shape.Type switch
+            return type switch
             {
-                AlakzatJatek_Lib.Shape.ShapeType.Circle => new Ellipse { Width = SHAPE_SIZE, Height = SHAPE_SIZE },
-                AlakzatJatek_Lib.Shape.ShapeType.Square1 => new Rectangle { Width = SHAPE_SIZE, Height = SHAPE_SIZE },
-                AlakzatJatek_Lib.Shape.ShapeType.Triangle1 => new Polygon
+                Shape.ShapeType.Circle => new Ellipse { Width = SHAPE_SIZE, Height = SHAPE_SIZE },
+                Shape.ShapeType.Square1 => new Rectangle { Width = SHAPE_SIZE, Height = SHAPE_SIZE },
+                Shape.ShapeType.Triangle1 => new Polygon
                 {
                     Points =
                     [
@@ -129,14 +128,14 @@ namespace AlakzatJatek
                         new Point(SHAPE_SIZE, SHAPE_SIZE)
                     ]
                 },
-                AlakzatJatek_Lib.Shape.ShapeType.Ellipse => new Ellipse { Width = SHAPE_SIZE, Height = 30 },
-                AlakzatJatek_Lib.Shape.ShapeType.Square2 => new Rectangle
+                Shape.ShapeType.Ellipse => new Ellipse { Width = SHAPE_SIZE, Height = 30 },
+                Shape.ShapeType.Square2 => new Rectangle
                 {
                     Width = SHAPE_SIZE,
                     Height = SHAPE_SIZE,
                     LayoutTransform = new RotateTransform(45, SHAPE_SIZE / 2.0, SHAPE_SIZE / 2.0)
                 },
-                AlakzatJatek_Lib.Shape.ShapeType.Triangle2 => new Polygon
+                Shape.ShapeType.Triangle2 => new Polygon
                 {
                     Points =
                     [
@@ -149,7 +148,7 @@ namespace AlakzatJatek
                 _ => throw new UnreachableException()
             };
         }
-        
+
         private void SetUpGrid(int size)
         {
             ShapesGrid.Children.Clear();

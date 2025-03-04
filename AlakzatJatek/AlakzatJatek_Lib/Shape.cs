@@ -6,12 +6,12 @@ namespace AlakzatJatek_Lib
     {
         public readonly ShapeType Type = type;
         public readonly Color Color = color;
-        
+
         public int Row { get; } = row;
         public int Column { get; } = column;
-        
+
         public bool IsDifferent(Shape shape) => shape.Type != Type && shape.Color != Color;
-        
+
         public enum ShapeType
         {
             Circle,

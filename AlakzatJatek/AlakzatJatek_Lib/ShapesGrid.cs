@@ -5,16 +5,16 @@
         public Shape[,] Shapes { get; }
 
         public int Size => Shapes.GetLength(0);
-        
-        public ShapesGrid() => Shapes = new Shape[0,0];
+
+        public ShapesGrid() => Shapes = new Shape[0, 0];
 
         public ShapesGrid(string input)
         {
             string[] lines = input.Split('\n');
-            
+
             if (!int.TryParse(lines[0], out int size) || size < 3 || size > 6)
                 throw new FormatException("A fájl formátuma érvénytelen.");
-            
+
             Shapes = new Shape[size, size];
             lines = lines.Skip(1).ToArray();
             if (lines.Length != size) throw new FormatException("A sorok száma nem megfelelő.");
@@ -30,16 +30,16 @@
                 }
             }
         }
-        
+
         public int CountSameShapeOrColor(int row, int col)
         {
             var shape = Shapes[row, col];
-            var shapes = Shapes.Cast<Shape>().ToList();
 
-            return shapes
+            return Shapes
+                .Cast<Shape>()
                 .Where(x => x != shape)
                 .Where(x => x.Row == row || x.Column == col)
                 .Count(x => !x.IsDifferent(shape));
         }
-    } 
+    }
 }

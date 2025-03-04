@@ -16,8 +16,8 @@ namespace AlakzatJatek_Lib
         };
 
         public static Color ParseColor(string color) =>
-            ColorMap.TryGetValue(color.Trim(), out var c) 
-                ? c 
+            ColorMap.TryGetValue(color.Trim(), out var c)
+                ? c
                 : throw new ArgumentException("Nem megfelelő szín");
 
         public static Shape.ShapeType ParseShape(string shape)
@@ -33,7 +33,7 @@ namespace AlakzatJatek_Lib
                 _ => throw new ArgumentException("Nem megfelelő alak")
             };
         }
-        
+
         public static Shape Create(string input, int row, int column)
         {
             string[] parts = input.Split('-');
