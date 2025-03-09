@@ -8,7 +8,7 @@ namespace Torpek_Test
         public void GnomeCountReturnZeroWhenThereAreNoGnomes()
         {
             var torpek = new Torpe();
-            Assert.AreEqual(0, torpek.GnomeCount());
+            Assert.AreEqual(0, torpek.GnomeCount);
         }
 
         [Test]
@@ -17,7 +17,7 @@ namespace Torpek_Test
             var torpek = new Torpe();
 
             torpek.AddGnome();
-            Assert.AreEqual(1, torpek.GnomeCount());
+            Assert.AreEqual(1, torpek.GnomeCount);
         }
 
         [TestCase(0)]
@@ -28,17 +28,17 @@ namespace Torpek_Test
             var torpek = new Torpe();
 
             torpek.AddGnomes(amount);
-            Assert.AreEqual(amount, torpek.GnomeCount());
+            Assert.AreEqual(amount, torpek.GnomeCount);
 
             torpek.AddGnomes(5);
-            Assert.AreEqual(amount + 5, torpek.GnomeCount());
+            Assert.AreEqual(amount + 5, torpek.GnomeCount);
         }
 
         [Test]
         public void HoleCountReturnsZeroWhenThereAreNoHoles()
         {
             var torpek = new Torpe();
-            Assert.AreEqual(0, torpek.HoleCount());
+            Assert.AreEqual(0, torpek.HoleCount);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Torpek_Test
             var torpek = new Torpe();
 
             torpek.AddHole(5);
-            Assert.AreEqual(1, torpek.HoleCount());
+            Assert.AreEqual(1, torpek.HoleCount);
         }
 
         [TestCase(new int[0], 0)]
@@ -62,7 +62,7 @@ namespace Torpek_Test
                 torpek.AddHole(depth);
             }
 
-            Assert.AreEqual(expectedAmount, torpek.HoleCount());
+            Assert.AreEqual(expectedAmount, torpek.HoleCount);
         }
 
         [Test]

@@ -10,8 +10,8 @@
         private readonly List<int> _gnomes = [];
         private readonly List<int> _holes = [];
 
-        public int GnomeCount() => _gnomes.Count;
-        public int HoleCount() => _holes.Count;
+        public int GnomeCount => _gnomes.Count;
+        public int HoleCount => _holes.Count;
 
         public void AddGnome() => _gnomes.Add(_gnomes.Count + 1);
 
@@ -35,23 +35,23 @@
 
         public List<int> FinalOrder()
         {
-            if (GnomeCount() < MIN_COUNT)
+            if (GnomeCount < MIN_COUNT)
                 throw new GnomeCountException("Gnome Count is too low.");
 
-            if (GnomeCount() > MAX_COUNT)
+            if (GnomeCount > MAX_COUNT)
                 throw new GnomeCountException("Gnome Count is too high.");
 
-            if (HoleCount() < MIN_COUNT)
+            if (HoleCount < MIN_COUNT)
                 throw new HoleCountException("Hole Count is too low.");
 
-            if (HoleCount() > MAX_COUNT)
+            if (HoleCount > MAX_COUNT)
                 throw new HoleCountException("Hole Count is too high.");
 
             foreach (int depth in _holes)
             {
                 var hole = new Stack<int>();
 
-                for (int i = 0; i < Math.Min(GnomeCount() + 1, depth); i++)
+                for (int i = 0; i < Math.Min(GnomeCount + 1, depth); i++)
                 {
                     hole.Push(_gnomes[0]);
                     _gnomes.RemoveAt(0);
